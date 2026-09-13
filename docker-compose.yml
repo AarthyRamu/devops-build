@@ -5,3 +5,21 @@ services:
     container_name: react-app
     ports:
       - "80:80"
+container_name: react-app
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Production Environment - React App  
+  react-app-prod:
+    image: aarthyramu/devops-build-prod:latest
+    ports:
+      - "3000:80"
+    container_name: react-app-prod
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
